@@ -1,6 +1,6 @@
 function Map() {
     this.size = 0;
-    var head = new Node('', '', null);
+    this.head = new Node('', '', null);
 
     function Node(key, val, next) {
         this.key = key;
@@ -8,8 +8,15 @@ function Map() {
         this.next = next;
     }
 
-    this.add = function(key, val) {
-        var node = head;
+    this.createNode = function(key, val, next) {
+        return new Node(key, val, next);
+    }
+}
+
+Map.prototype = {
+    add: function(key, val) {
+        var node = this.head;
+        
         var foundKey = false;
         while (node.next !== null) {
             node = node.next;
@@ -19,43 +26,47 @@ function Map() {
             }
         }
         if (!foundKey) {
-            node.next = new Node(key, val, null);
+            node.next = this.createNode(key, val, null);
             this.size++;
         }
-    };
-
-    this.get = function(key) {
-        var node = head;
+    },
+    get: function(key) {
+        var node = this.head;
         while (node.next !== null) {
             node = node.next;
             if (node.key === key) {
                 return node.value;
             }
         }
-        return 'not found';
-    };
-
-    this.loop = function() {
-        var node = head;
+        return null;
+    },
+    print: function() {
+        var node = this.head;
         while (node.next !== null) {
             node = node.next;
             console.log(node.key + ' : ' + node.value);
         }
-    };
-
-    this.remove = function(key) {
-        var node = head;
+    },
+    remove: function(key) {
+        var node = this.head;
         while (node.next !== null) {
             last = node;
             node = node.next;
             if (node.key === key) {
                 last.next = node.next;
                 this.size--;
-                return node;
+                var temp = node;
+                delete node;
+                return temp;
             }
         }
 
         return 'element not found';
-    };
-
+    }
 }
+
+var m = new Map();
+m.add('name', 'kahled');
+m.add('name', 'kahled');
+m.print();
+console.log(m.head)
