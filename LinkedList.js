@@ -11,6 +11,7 @@ function LinkedList() {
         return new Node(val, next);
     }
 }
+
 LinkedList.prototype = {
     add: function(val) {
         var node = this.head;
@@ -25,8 +26,7 @@ LinkedList.prototype = {
     print: function() {
         var node = this.head;
         while (node.next !== null) {
-            nod
-            e = node.next;
+            node = node.next;
             console.log(node.value);
         }
     },
@@ -49,16 +49,16 @@ LinkedList.prototype = {
 };
 
 
+//Testing 
 var list = new LinkedList();
 
+list.add('Apple');
+list.add('Orange');
+list.add('Tomato');
+list.add('Egg');
 
-list.add('khaled');
+list.remove('Orange');
 
-list.add('saleh');
+list.print();
 
-list.add('mohamed');
-list.add('ali');
-
-list.remove('mohsamed');
-
-list.print()
+console.log(list.head)

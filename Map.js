@@ -16,7 +16,7 @@ function Map() {
 Map.prototype = {
     add: function(key, val) {
         var node = this.head;
-        
+
         var foundKey = false;
         while (node.next !== null) {
             node = node.next;
@@ -65,8 +65,10 @@ Map.prototype = {
     }
 }
 
+// Testing 
 var m = new Map();
-m.add('name', 'kahled');
-m.add('name', 'kahled');
+m.add('A', 'Apple');
+m.add('E', 'Earth');
 m.print();
+
 console.log(m.head)
