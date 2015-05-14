@@ -1,3 +1,11 @@
+/*
+|----HEAD----|      |------------|      |------------|      |------------|      
+|* Key   |   |      |* Key   |   |      |* Key   |   |      |* Key   |   |      
+|        | NEXT---->|        | NEXT---->|        | NEXT---->|        | NEXT---->Null
+|* Value |   |      |* Value |   |      |* Value |   |      |* Value |   |      
+|------------|      |------------|      |------------|      |------------|      
+ */
+
 function Map() {
     this.size = 0;
     this.head = new Node('', '', null);

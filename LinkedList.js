@@ -1,3 +1,9 @@
+/*
+|----HEAD----|    |------------|    |------------|    |------------|    
+|Value | NEXT---->|Value | NEXT---->|Value | NEXT---->|Value | NEXT---->NULL
+|------------|    |------------|    |------------|    |------------|    
+ */
+
 function LinkedList() {
     this.size = 0;
     this.head = new Node('', null);
@@ -15,7 +21,8 @@ function LinkedList() {
 LinkedList.prototype = {
     add: function(val) {
         var node = this.head;
-        //until we reach the last element 
+
+        //loop until we reach the last element 
         while (node.next !== null) {
             node = node.next;
         }
