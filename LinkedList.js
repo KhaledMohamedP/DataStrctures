@@ -3,6 +3,7 @@
 |Value | NEXT---->|Value | NEXT---->|Value | NEXT---->|Value | NEXT---->NULL
 |------------|    |------------|    |------------|    |------------|    
  */
+'strict mode';
 
 function LinkedList() {
     this.size = 0;
@@ -22,15 +23,15 @@ LinkedList.prototype = {
     add: function(val, item) {
         var node = this.head;
 
-        //loop until we reach the last element 
+        //loop until we reach the last element || find item
         while (node.next !== null) {
             node = node.next;
             if (node.value === item) {
                 break;
             }
         }
-        node.next = this.createNode(val, node.next);
 
+        node.next = this.createNode(val, node.next);
         this.size++;
     },
 
@@ -56,6 +57,16 @@ LinkedList.prototype = {
             }
         }
         return 'element not found';
+    },
+    contains: function(item){
+        var node = this.head; 
+        while (node.next !== null) {
+            node = node.next; 
+            if (node.value === item) {
+                return true; 
+            }
+        }
+        return false; 
     }
 };
 
@@ -71,5 +82,7 @@ list.add('Egg', 'Tomato');
 list.remove('Apple');
 
 list.print();
+
+console.log(list.contains('Tomato'));
 
 console.log(list.head)

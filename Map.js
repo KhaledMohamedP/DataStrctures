@@ -5,6 +5,7 @@
 |* Value |   |      |* Value |   |      |* Value |   |      |* Value |   |      
 |------------|      |------------|      |------------|      |------------|      
  */
+'strict mode';
 
 function Map() {
     this.size = 0;
@@ -70,6 +71,16 @@ Map.prototype = {
         }
 
         return 'element not found';
+    },
+    contains: function(item) {
+        var node = this.head;
+        while (node.next !== null) {
+            node = node.next;
+            if (node.value === item) {
+                return true;
+            }
+        }
+        return false;
     }
 }
 
@@ -78,5 +89,7 @@ var m = new Map();
 m.add('A', 'Apple');
 m.add('E', 'Earth');
 m.print();
+
+console.log(m.contains('Apple'))
 
 console.log(m.head)
