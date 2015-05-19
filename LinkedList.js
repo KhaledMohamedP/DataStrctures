@@ -19,14 +19,18 @@ function LinkedList() {
 }
 
 LinkedList.prototype = {
-    add: function(val) {
+    add: function(val, item) {
         var node = this.head;
 
         //loop until we reach the last element 
         while (node.next !== null) {
             node = node.next;
+            if (node.value === item) {
+                break;
+            }
         }
-        node.next = this.createNode(val, null);
+        node.next = this.createNode(val, node.next);
+
         this.size++;
     },
 
@@ -37,7 +41,7 @@ LinkedList.prototype = {
             console.log(node.value);
         }
     },
-    
+
     remove: function(val) {
         var node = this.head;
         while (node.next !== null) {
@@ -61,10 +65,10 @@ var list = new LinkedList();
 
 list.add('Apple');
 list.add('Orange');
-list.add('Tomato');
-list.add('Egg');
+list.add('Tomato', 'Apple');
+list.add('Egg', 'Tomato');
 
-list.remove('Orange');
+list.remove('Apple');
 
 list.print();
 
