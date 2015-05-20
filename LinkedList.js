@@ -34,7 +34,6 @@ LinkedList.prototype = {
         node.next = this.createNode(val, node.next);
         this.size++;
     },
-
     print: function() {
         var node = this.head;
         while (node.next !== null) {
@@ -42,7 +41,6 @@ LinkedList.prototype = {
             console.log(node.value);
         }
     },
-
     remove: function(val) {
         var node = this.head;
         while (node.next !== null) {
@@ -67,6 +65,13 @@ LinkedList.prototype = {
             }
         }
         return false; 
+    },
+    foreach: function(func){
+        var node = this.head; 
+        while(node.next !== null){
+            node = node.next; 
+            func(node.value);
+        }
     }
 };
 
@@ -85,4 +90,11 @@ list.print();
 
 console.log(list.contains('Tomato'));
 
-console.log(list.head)
+console.log(list.head);
+
+list.foreach(function(val){
+	if(typeof val === 'string')
+		console.log(val.toUpperCase());
+	else 
+		console.log(val)
+});

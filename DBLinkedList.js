@@ -3,6 +3,7 @@
 null<---Prev | Value | NEXT----><----Prev | Value | NEXT----><----Prev | Value | NEXT---->NULL
        |-------------------|        |-------------------|        |-------------------|    
  */
+'strict mode'
 
 function DBLinkedList() {
     this.size = 0;
@@ -18,7 +19,7 @@ function DBLinkedList() {
         return new Node(val, prev, next);
     }
 }
-LinkedList.prototype = {
+DBLinkedList.prototype = {
     add: function(val, item) {
         var node = this.head;
         var prevNode = null;
@@ -33,7 +34,6 @@ LinkedList.prototype = {
         node.next = this.createNode(val, node ,node.next);
         this.size++;
     },
-
     print: function() {
         var node = this.head;
         while (node.next !== null) {
@@ -41,7 +41,6 @@ LinkedList.prototype = {
             console.log(node.value);
         }
     },
-
     remove: function(val) {
         var node = this.head;
         while (node.next !== null) {
@@ -58,7 +57,6 @@ LinkedList.prototype = {
         }
         return 'element not found';
     },
-    
     contains: function(item){
         var node = this.head; 
         while (node.next !== null) {
@@ -68,6 +66,13 @@ LinkedList.prototype = {
             }
         }
         return false; 
+    },
+    foreach: function(func){
+        var node = this.head; 
+        while(node.next !== null){
+            node = node.next; 
+            func(node.value);
+        }
     }
 };
 

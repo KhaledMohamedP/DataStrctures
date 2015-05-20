@@ -81,6 +81,13 @@ Map.prototype = {
             }
         }
         return false;
+    },
+    foreach: function(func){
+        var node = this.head; 
+        while(node.next !== null){
+            node = node.next; 
+            func(node.value);
+        }
     }
 }
 
