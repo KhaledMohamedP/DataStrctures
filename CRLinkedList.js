@@ -3,13 +3,13 @@
 |Value | NEXT---->|Value | NEXT---->|Value | NEXT---->|Value | NEXT----|
 |------------|    |------------|    |------------|    |------------|   | 
      ^_________________________________________________________________|
-*/ 
-'strict mode';
+*/
+'use strict';
 
 function CRLinkedList() {
     this.size = 0;
     this.head = new Node('head', null);
-    this.head.next =  this.head; 
+    this.head.next = this.head;
 
     function Node(val, next) {
         this.value = val;
@@ -44,7 +44,8 @@ CRLinkedList.prototype = {
         }
     },
     remove: function(val) {
-        var node = this.head;
+        var node = this.head,
+            last;
         while (node.next.value !== 'head') {
             last = node;
             node = node.next;
@@ -58,20 +59,20 @@ CRLinkedList.prototype = {
         }
         return 'element not found';
     },
-    contains: function(item){
-        var node = this.head; 
+    has: function(item) {
+        var node = this.head;
         while (node.next.value !== 'head') {
             if (node.value === item) {
-                return true; 
+                return true;
             }
-            node = node.next; 
+            node = node.next;
         }
-        return false; 
+        return false;
     },
-    foreach: function(func){
-        var node = this.head; 
+    foreach: function(func) {
+        var node = this.head;
         while (node.next.value !== 'head') {
-            node = node.next; 
+            node = node.next;
             func(node.value);
         }
     }
@@ -90,13 +91,13 @@ list.remove('Apple');
 
 list.print();
 
-console.log(list.contains('Tomato'));
+console.log(list.has('Tomato'));
 
 console.log(list.head);
 
-list.foreach(function(val){
-    if(typeof val === 'string')
+list.foreach(function(val) {
+    if (typeof val === 'string')
         console.log(val.toUpperCase());
-    else 
+    else
         console.log(val)
 });

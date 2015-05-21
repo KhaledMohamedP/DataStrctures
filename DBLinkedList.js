@@ -3,7 +3,7 @@
 null<---Prev | Value | NEXT----><----Prev | Value | NEXT----><----Prev | Value | NEXT---->NULL
        |-------------------|        |-------------------|        |-------------------|    
  */
-'strict mode'
+'use strict';
 
 function DBLinkedList() {
     this.size = 0;
@@ -30,8 +30,8 @@ DBLinkedList.prototype = {
                 break;
             }
         }
-        
-        node.next = this.createNode(val, node ,node.next);
+
+        node.next = this.createNode(val, node, node.next);
         this.size++;
     },
     print: function() {
@@ -42,7 +42,8 @@ DBLinkedList.prototype = {
         }
     },
     remove: function(val) {
-        var node = this.head;
+        var node = this.head,
+            last;
         while (node.next !== null) {
             last = node;
             node = node.next;
@@ -50,27 +51,27 @@ DBLinkedList.prototype = {
                 //last node point to the next node 
                 //while removing the current node  -- - ---
                 last.next = node.next;
-                node.next.prev = last; 
+                node.next.prev = last;
                 this.size--;
                 return node;
             }
         }
         return 'element not found';
     },
-    contains: function(item){
-        var node = this.head; 
+    has: function(item) {
+        var node = this.head;
         while (node.next !== null) {
-            node = node.next; 
+            node = node.next;
             if (node.value === item) {
-                return true; 
+                return true;
             }
         }
-        return false; 
+        return false;
     },
-    foreach: function(func){
-        var node = this.head; 
-        while(node.next !== null){
-            node = node.next; 
+    foreach: function(func) {
+        var node = this.head;
+        while (node.next !== null) {
+            node = node.next;
             func(node.value);
         }
     }
@@ -89,6 +90,6 @@ list.remove('Apple');
 
 list.print();
 
-console.log(list.contains('Tomato'));
+console.log(list.has('Tomato'));
 
 console.log(list.head)

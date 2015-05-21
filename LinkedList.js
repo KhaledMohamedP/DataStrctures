@@ -3,7 +3,7 @@
 |Value | NEXT---->|Value | NEXT---->|Value | NEXT---->|Value | NEXT---->NULL
 |------------|    |------------|    |------------|    |------------|    
  */
-'strict mode';
+'use strict';
 
 function LinkedList() {
     this.size = 0;
@@ -42,7 +42,8 @@ LinkedList.prototype = {
         }
     },
     remove: function(val) {
-        var node = this.head;
+        var node = this.head,
+            last;
         while (node.next !== null) {
             last = node;
             node = node.next;
@@ -56,20 +57,20 @@ LinkedList.prototype = {
         }
         return 'element not found';
     },
-    contains: function(item){
-        var node = this.head; 
+    has: function(item) {
+        var node = this.head;
         while (node.next !== null) {
-            node = node.next; 
+            node = node.next;
             if (node.value === item) {
-                return true; 
+                return true;
             }
         }
-        return false; 
+        return false;
     },
-    foreach: function(func){
-        var node = this.head; 
-        while(node.next !== null){
-            node = node.next; 
+    foreach: function(func) {
+        var node = this.head;
+        while (node.next !== null) {
+            node = node.next;
             func(node.value);
         }
     }
@@ -88,13 +89,13 @@ list.remove('Apple');
 
 list.print();
 
-console.log(list.contains('Tomato'));
+console.log(list.has('Tomato'));
 
 console.log(list.head);
 
-list.foreach(function(val){
-	if(typeof val === 'string')
-		console.log(val.toUpperCase());
-	else 
-		console.log(val)
+list.foreach(function(val) {
+    if (typeof val === 'string')
+        console.log(val.toUpperCase());
+    else
+        console.log(val)
 });

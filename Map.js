@@ -5,7 +5,7 @@
 |* Value |   |      |* Value |   |      |* Value |   |      |* Value |   |      
 |------------|      |------------|      |------------|      |------------|      
  */
-'strict mode';
+'use strict';
 
 function Map() {
     this.size = 0;
@@ -57,7 +57,8 @@ Map.prototype = {
         }
     },
     remove: function(key) {
-        var node = this.head;
+        var node = this.head,
+            last;
         while (node.next !== null) {
             last = node;
             node = node.next;
@@ -65,14 +66,13 @@ Map.prototype = {
                 last.next = node.next;
                 this.size--;
                 var temp = node;
-                delete node;
                 return temp;
             }
         }
 
         return 'element not found';
     },
-    contains: function(item) {
+    has: function(item) {
         var node = this.head;
         while (node.next !== null) {
             node = node.next;
@@ -82,10 +82,10 @@ Map.prototype = {
         }
         return false;
     },
-    foreach: function(func){
-        var node = this.head; 
-        while(node.next !== null){
-            node = node.next; 
+    foreach: function(func) {
+        var node = this.head;
+        while (node.next !== null) {
+            node = node.next;
             func(node.value);
         }
     }
@@ -97,6 +97,6 @@ m.add('A', 'Apple');
 m.add('E', 'Earth');
 m.print();
 
-console.log(m.contains('Apple'))
+console.log(m.has('Apple'))
 
 console.log(m.head)
