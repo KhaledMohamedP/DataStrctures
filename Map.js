@@ -92,11 +92,14 @@ Map.prototype = {
 }
 
 // Testing 
+
 var m = new Map();
-m.add('A', 'Apple');
-m.add('E', 'Earth');
-m.print();
 
-console.log(m.has('Apple'))
+m.add('A', 'Apple'); // { key: 'A' , value: 'Apple' }
+m.add('E', 'Earth'); // { key: 'E' , value: 'Earth' }
 
-console.log(m.head)
+m.print(); // prints out A : Apple , E : Earth
+
+m.has('Apple') //true
+
+m.head //JSON representation of the list 

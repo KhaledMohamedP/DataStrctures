@@ -85,7 +85,7 @@ list.add('Orange');
 list.add('Tomato', 'Apple');
 list.add('Egg', 'Tomato');
 
-list.remove('Apple');
+list.remove('Apple'); //removes 'apple' form the list
 
 list.print();
 
