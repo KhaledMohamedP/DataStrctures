@@ -87,15 +87,15 @@ list.add('Egg', 'Tomato');
 
 list.remove('Apple'); //removes 'apple' form the list
 
-list.print();
+list.print(); //Tomato, Egg, Orange
 
-console.log(list.has('Tomato'));
+console.log(list.has('Tomato')); // true
 
-console.log(list.head);
+console.log(list.head); 
 
 list.foreach(function(val) {
     if (typeof val === 'string')
         console.log(val.toUpperCase());
     else
         console.log(val)
-});
+}); //TOMATO, EGG, ORANGE
