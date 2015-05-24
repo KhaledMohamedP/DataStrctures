@@ -54,12 +54,30 @@ Set.prototype = {
 
         return result;
     },
-    union: function(set){
-        var result = set || new Set(); 
+    union: function(set) {
+        var result = new Set();
         for (var i = 0; i < this.size(); i++) {
             result.add(this.list[i]);
         };
+        for (var i = 0; i < set.size(); i++) {
+            result.add(set.list[i]);
+        };
         return result;
+    },
+    difference: function(set) {
+        var result = new Set();
+        for (var i = this.list.length - 1; i >= 0; i--) {
+            if (!set.has(this.list[i])) {
+                result.add(this.list[i]);
+            }
+        }
+       for (var i = set.list.length - 1; i >= 0; i--) {
+            if (!this.has(set.list[i])) {
+                result.add(set.list[i]);
+            }
+        }
+
+        return result; 
     },
     print: function() {
         console.log(this.list);
@@ -77,11 +95,11 @@ list.add(3);
 list.add(5);
 list.add(5);
 
-list.remove(5); //removes 5 form the list 
+list.remove(5); // removes 5 form the list 
 
-console.log(list.list)
+list.pop(); // removes the last element from the set
 
-// console.log(list.pop()); //removes the last element from the set
+list.print(); // [ 1, 2]
 
 //experiment intersect of sets 
 var newSet = new Set();
@@ -90,11 +108,13 @@ newSet.add(1);
 newSet.add(2012);
 newSet.add(2014);
 newSet.add(3);
+newSet.print();
 
 newSet.intersect(list); //returns a new set with a list property list: [ 1, 3 ]
 
 //experiment union of sets 
-console.log(newSet.union(list)); // { list: [ 1, 2, 3, 2014, 2012 ] }
+console.log('Union:', newSet.union(list)); // { list: [ 1, 2012, 2014, 3, 2 ] }
 
+console.log('Difference:', newSet.difference(list)); // { list: [ 3, 2014, 2012, 2 ] }
 
 
