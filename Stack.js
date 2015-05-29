@@ -16,8 +16,8 @@ Stack.prototype = {
     pop: function() {
         return this.list.pop();
     },
-    peek: function(){
-        return this.list[this.size()-1];
+    peek: function() {
+        return this.list[this.size() - 1];
     }
 }
 
@@ -37,3 +37,22 @@ console.log(list.list)
 console.log(list.pop()); //removes 5 -> the last element from the set
 
 console.log(list.peek()); //return 3 - > the top element of the stack 
+
+Object.defineProperty(Stack.prototype, Symbol.iterator, {
+    enumerable: false,
+    writable: false,
+    configurable: false,
+    value: function() {
+        var list = this.list;
+        var curr = 0;
+        return {
+            next: function() {
+                return {
+                    value: list[curr++],
+                    done: (curr > list.length)
+                };
+            }
+        }
+    }
+});
+
