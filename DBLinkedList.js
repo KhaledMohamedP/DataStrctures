@@ -1,53 +1,54 @@
 /*
        |--------HEAD-------|        |-------------------|        |-------------------|    
-null<---Prev | Value | NEXT----><----Prev | Value | NEXT----><----Prev | Value | NEXT---->NULL
+null<---Prev | K:V  | NEXT----><----Prev | K:V  | NEXT----><----Prev | Value | NEXT---->NULL
        |-------------------|        |-------------------|        |-------------------|    
  */
 'use strict';
 
 function DBLinkedList() {
     this.size = 0;
-    this.head = new Node('', null, null);
+    this.head = new Node('', '', null, null);
 
-    function Node(val, prev, next) {
+    function Node(key, val, prev, next) {
+        this.key = key;
         this.value = val;
         this.next = next;
         this.prev = prev;
     }
 
-    this.createNode = function(val, prev, next) {
-        return new Node(val, prev, next);
+    this.createNode = function(key, val, prev, next) {
+        return new Node(key, val, prev, next);
     }
 }
 DBLinkedList.prototype = {
-    add: function(val, item) {
+    add: function(key, val, item) {
         var node = this.head;
         var prevNode = null;
         //loop until we reach the last element || find item
         while (node.next !== null) {
             node = node.next;
-            if (node.value === item) {
+            if (node.key === item) {
                 break;
             }
         }
 
-        node.next = this.createNode(val, node, node.next);
+        node.next = this.createNode(key, val, node, node.next);
         this.size++;
     },
     print: function() {
         var node = this.head;
         while (node.next !== null) {
             node = node.next;
-            console.log(node.value);
+            console.log(node.key);
         }
     },
-    remove: function(val) {
+    remove: function(key) {
         var node = this.head,
             last;
         while (node.next !== null) {
             last = node;
             node = node.next;
-            if (node.value === val) {
+            if (node.key === key) {
                 //last node point to the next node 
                 //while removing the current node  -- - ---
                 last.next = node.next;
@@ -62,7 +63,7 @@ DBLinkedList.prototype = {
         var node = this.head;
         while (node.next !== null) {
             node = node.next;
-            if (node.value === item) {
+            if (node.key === item) {
                 return true;
             }
         }
@@ -72,7 +73,7 @@ DBLinkedList.prototype = {
         var node = this.head;
         while (node.next !== null) {
             node = node.next;
-            func(node.value);
+            func(node.key);
         }
     }
 };
