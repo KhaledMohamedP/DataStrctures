@@ -29,7 +29,7 @@ function BinarySearchTree() {
         this.key = key;
         this.right = null;
         this.left = null;
-        this.count = 0;
+        this.count = 1;
     }
 
     this.createNode = function(value, key) {
@@ -40,20 +40,21 @@ function BinarySearchTree() {
 }
 
 BinarySearchTree.prototype = {
-    add: function(value) {
+    add: function(value, key) {
         var newNode = this.createNode;
         var size = this.sizeNode;
-        this.root = put(this.root, value);
+        this.root = put(this.root, value, key);
 
         function put(node, value, key) {
             if (node == null) {
-                return newNode(value);
+                return newNode(value, key);
             } else if (node.value > value) {
-                node.left = put(node.left, value);
+                node.left = put(node.left, value, key);
             } else if (node.value < value) {
-                node.right = put(node.right, value);
+                node.right = put(node.right, value, key);
             } else {
                 node.value = value;
+                node.key = key;
             }
             node.count = 1 + size(node.left) + size(node.right)
             return node;
@@ -94,24 +95,7 @@ BinarySearchTree.prototype = {
         return found;
     },
     remove: function(value) {
-        // var s = this.has(value);
-
-        // if (s === false) {
-        //     return;
-        // }
-
-        //  function removing(node, value) {
-        //     if (node === null) {
-        //         return false;
-        //     } else if (node.value > value) {
-        //         return removing(node.left, value);
-        //     } else if (node.value < value) {
-        //         return removing(node.right, value);
-        //     } else {
-        //         return node;
-        //     }
-        // }
-        // return removing(this.root, value);
+        // under construction (seeking for  an optimal solution)
     },
     has: function(value) {
 
@@ -143,11 +127,7 @@ BinarySearchTree.prototype = {
         return countNodes(node);
     },
     size: function() {
-        if (this.root === null) {
-            return 0;
-        }
-
-        return this.root.count;
+        return this.root ? this.root.count : 0;
     }
 
 };
@@ -175,3 +155,5 @@ listKV.add('a',21);
 listKV.add('l',223);
 listKV.add('e',33);
 listKV.add('d',2);
+
+console.log(listKV.root)
