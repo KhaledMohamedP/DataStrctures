@@ -106,32 +106,27 @@ BinarySearchTree.prototype = {
                 return search(node.left, value);
             } else if (node.value < value) {
                 return search(node.right, value);
-            } else if(node.value == value){
+            } else if (node.value == value) {
                 return true;
-            }else{
+            } else {
                 return false;
             }
         }
         return search(this.root, value);;
     },
-    sizeNode: function(node) {
-
-        function countNodes(node) {
-            if (node == null) {
-                return 0;
-            } else {
-                return 1 + countNodes(node.right) + countNodes(node.left);
-            }
+    sizeNode: function countNodes(node) {
+        if (node == null) {
+            return 0;
+        } else {
+            return 1 + countNodes(node.right) + countNodes(node.left);
         }
-
-        return countNodes(node);
     },
     size: function() {
         return this.root ? this.root.count : 0;
     }
 
 };
-
+//reduce an unnecessarily function in the sizeNode 
 var list = new BinarySearchTree();
 
 list.add(2);
@@ -149,11 +144,9 @@ list.has('d');
 
 var listKV = new BinarySearchTree();
 
-listKV.add('k',234);
-listKV.add('h',22);
-listKV.add('a',21);
-listKV.add('l',223);
-listKV.add('e',33);
-listKV.add('d',2);
-
-console.log(listKV.root)
+listKV.add('k', 234);
+listKV.add('h', 22);
+listKV.add('a', 21);
+listKV.add('l', 223);
+listKV.add('e', 33);
+listKV.add('d', 2);
