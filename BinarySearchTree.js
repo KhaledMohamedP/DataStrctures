@@ -126,7 +126,7 @@ BinarySearchTree.prototype = {
     }
 
 };
-//reduce an unnecessarily function in the sizeNode 
+
 var list = new BinarySearchTree();
 
 list.add(2);
