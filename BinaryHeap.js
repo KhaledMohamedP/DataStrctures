@@ -1,3 +1,13 @@
+/**
+ *              *-----------------\
+ *              *------------\    \
+ *[ 'ø',  'T',  'S',  'R',  'P',  'N',  'O',  'A',...... ]
+ * Empty  *------^     ^ *----------------^     ^
+ *        (2 * i)      ^ *----------------------^
+ *        *------------^
+ *        (2 * i) + 1
+ */
+
 function BinaryHeap(order, comparable) {
     this.content = ['ø'];
     this.comparable = comparable || function(x){ return x; };
