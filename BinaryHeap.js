@@ -52,22 +52,14 @@ BinaryHeap.prototype = {
         if(this.order == 'ascending'){
             return this.less(elmA, elmB);
         }else{
-            return this.biger(elmA, elmB);
+            return this.bigger(elmA, elmB);
         }
     },
     less: function(a, b) {
-        if (a < b) {
-            return true;
-        } else {
-            return false;
-        }
+        return (a < b); 
     },
-    biger: function(a, b) {
-        if (a > b) {
-            return true;
-        } else {
-            return false;
-        }
+    bigger: function(a, b) {
+        return (a > b);
     },
     exchange: function(a, b) {
         var temp = this.content[a]
