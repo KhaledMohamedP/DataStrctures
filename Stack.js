@@ -7,7 +7,6 @@ function Stack() {
 Stack.prototype = {
     add: function(elm) {
         this.list.push(elm)
-
         return elm
     },
     size: function() {

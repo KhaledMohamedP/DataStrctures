@@ -21,8 +21,9 @@ BinaryHeap.prototype = {
         return elm;
     },
     remove: function() {
-        if(this.size() == 1) return null; 
-        this.exchange(1, this.size() - 1)
+        var size = this.size(); 
+        if(size == 1) return null; 
+        this.exchange(1, size - 1); // 1 = root element
         var max = this.content.pop();
         this.sinkDown(1);
         return max;
@@ -44,7 +45,7 @@ BinaryHeap.prototype = {
             if (!this.compare(k, j)) break;
             this.exchange(k, j);
             k = j;
-        }//this function was taken from Algorithm 4th edition by sedgewick rob 
+        }
     },
     compare: function(a, b){
         var elmA = this.comparable(this.content[a])
